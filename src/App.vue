@@ -1,9 +1,10 @@
 <script setup>
+// npm run dev
 </script>
 
 <template>
   <div>
-    test
+    hola
   </div>
 </template>
 
