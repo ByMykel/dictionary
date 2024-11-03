@@ -1,4 +1,8 @@
 <script setup>
+import { ref } from "vue"
+
+const data = ref([])
+
 // npm run dev
 async function getData(word) {
   const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
@@ -10,6 +14,7 @@ async function getData(word) {
 
     const json = await response.json();
     console.log(json);
+    data.value = json
   } catch (error) {
     console.error(error.message);
   }
@@ -79,6 +84,12 @@ async function getData(word) {
       <p style="color: var(--clr-primary-400);">Source</p>
       <a style="color: black;" href="https://en.wiktionary.org/wiki/keyboard">https://en.wiktionary.org/wiki/keyboard</a>
     </footer>
+
+    <div>
+      <pre>
+        {{ data }}
+      </pre>
+    </div>
 
   </div>
 </template>
