@@ -1,5 +1,19 @@
 <script setup>
 // npm run dev
+async function getData(word) {
+  const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    const json = await response.json();
+    console.log(json);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
 </script>
 
 <template>
@@ -10,7 +24,7 @@
 
 
     <div class="buscador_div">
-      <input type="text" id="buscador" />
+      <input type="text" id="buscador" @input="getData($event.target.value)" />
       <div class="otro_div">
         <img src="./assets/icon-search.svg" class="lupa" />
       </div>
